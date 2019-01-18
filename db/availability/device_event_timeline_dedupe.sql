@@ -48,6 +48,7 @@ FROM
                 AND ((_left.event_type = 'available'::event_types AND _right.event_type = 'available'::event_types) OR
                 -- both the same, not 'avail' -> 
                     (_left.event_type <> 'available'::event_types AND _right.event_type <> 'available'::event_types))
+            ORDER BY _left.vehicle_id, _left.event_time
         ) dupe
         WHERE
             dupe.condition
